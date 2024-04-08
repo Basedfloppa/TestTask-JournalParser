@@ -62,7 +62,6 @@ namespace test_task_EF
                 }
 
                 string file_path = arguments["file-output"].Value + "result.txt";
-                File.Create(file_path);
                 foreach (string key in entryCounts.Keys)
                 {
                     File.AppendAllText(file_path, $"{key} -> {entryCounts[key]}");
@@ -161,8 +160,8 @@ namespace test_task_EF
             foreach(string line in File)
             {
                 int index = line.IndexOf(':');
-                string address = line.Substring(0, index);
-                string date_time = line.Substring(index + 1);
+                string address = line.Substring(0, index).Trim();
+                string date_time = line.Substring(index + 1).Trim();
 
                 if (address_pattern.IsMatch(address) && date_time_pattern.IsMatch(date_time))
                 {
